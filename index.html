@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Luera Kozmetik</title>
 
   <style>
@@ -15,8 +14,7 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      min-height: 100%;
-      background: #ffffff;
+      background: white;
     }
 
     body {
@@ -29,81 +27,81 @@
 
     .page {
       width: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 10px;
+      justify-content: center;
+      padding: 8px;
     }
 
     .main-image {
-      display: block;
       max-width: 95vw;
-      max-height: 72vh;
+      max-height: 68vh;
       width: auto;
       height: auto;
       object-fit: contain;
+      display: block;
     }
 
     .countdown-area {
+      width: 100%;
+      margin-top: 14px;
       text-align: center;
-      margin-top: 12px;
+      flex-shrink: 0;
     }
 
     .countdown-title {
-      color: #172B4D;
       font-size: 14px;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
       font-weight: 600;
+      letter-spacing: 3px;
+      color: #1d2d4f;
+      margin-bottom: 10px;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      align-items: center;
+      gap: 22px;
     }
 
     .time-box {
-      min-width: 65px;
+      text-align: center;
+      min-width: 55px;
     }
 
     .number {
       display: block;
-      color: #172B4D;
       font-family: Georgia, serif;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
+      color: #1d2d4f;
     }
 
     .label {
       display: block;
-      color: #A98845;
+      margin-top: 3px;
       font-size: 10px;
       letter-spacing: 1px;
-      margin-top: 3px;
+      color: #a48748;
     }
 
     @media (max-width: 600px) {
       .main-image {
-        max-width: 96vw;
-        max-height: 70vh;
+        max-height: 65vh;
       }
 
       .countdown {
         gap: 8px;
       }
 
-      .time-box {
-        min-width: 55px;
-      }
-
       .number {
         font-size: 25px;
       }
 
-      .countdown-title {
-        font-size: 12px;
+      .time-box {
+        min-width: 50px;
       }
     }
   </style>
@@ -111,89 +109,83 @@
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <img
-      class="main-image"
-      src="WhatsApp Image 2026-09-06 at 16.37.58.jpeg"
-      alt="Luera Kozmetik Açılış">
+  <img
+    class="main-image"
+    src="WhatsApp Image 2026-09-06 at 16.37.58.jpeg"
+    alt="Luera Kozmetik Açılış"
+  >
 
-    <div class="countdown-area">
+  <div class="countdown-area">
 
-      <div class="countdown-title">
-        AÇILIŞA KALAN SÜRE
+    <div class="countdown-title">
+      AÇILIŞA KALAN SÜRE
+    </div>
+
+    <div class="countdown">
+
+      <div class="time-box">
+        <span class="number" id="days">--</span>
+        <span class="label">GÜN</span>
       </div>
 
-      <div class="countdown">
-
-        <div class="time-box">
-          <span class="number" id="days">00</span>
-          <span class="label">GÜN</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="hours">00</span>
-          <span class="label">SAAT</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="minutes">00</span>
-          <span class="label">DAKİKA</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="seconds">00</span>
-          <span class="label">SANİYE</span>
-        </div>
-
+      <div class="time-box">
+        <span class="number" id="hours">--</span>
+        <span class="label">SAAT</span>
       </div>
+
+      <div class="time-box">
+        <span class="number" id="minutes">--</span>
+        <span class="label">DAKİKA</span>
+      </div>
+
+      <div class="time-box">
+        <span class="number" id="seconds">--</span>
+        <span class="label">SANİYE</span>
+      </div>
+
     </div>
 
   </div>
 
-  <script>
-    const openingDate = new Date("2026-09-12T15:00:00+03:00");
+</div>
 
-    function updateCountdown() {
+<script>
+  const openingTime = new Date("2026-09-12T15:00:00+03:00").getTime();
 
-      const now = new Date();
-      const distance = openingDate - now;
+  function updateCountdown() {
 
-      if (distance <= 0) {
-        document.querySelector(".countdown-area").innerHTML =
-          '<div class="countdown-title">LUERA KOZMETİK AÇILDI</div>';
-        return;
-      }
+    const now = new Date().getTime();
+    const distance = openingTime - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) /
-        (1000 * 60 * 60)
-      );
-      const minutes = Math.floor(
-        (distance % (1000 * 60 * 60)) /
-        (1000 * 60)
-      );
-      const seconds = Math.floor(
-        (distance % (1000 * 60)) / 1000
-      );
-
-      document.getElementById("days").textContent =
-        String(days).padStart(2, "0");
-
-      document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-
-      document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-      document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
+    if (distance <= 0) {
+      document.querySelector(".countdown-area").innerHTML =
+        '<div class="countdown-title">LUERA KOZMETİK AÇILDI</div>';
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+    const days = Math.floor(distance / 86400000);
+    const hours = Math.floor((distance % 86400000) / 3600000);
+    const minutes = Math.floor((distance % 3600000) / 60000);
+    const seconds = Math.floor((distance % 60000) / 1000);
+
+    document.getElementById("days").textContent =
+      String(days).padStart(2, "0");
+
+    document.getElementById("hours").textContent =
+      String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+      String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+      String(seconds).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 
 </body>
 </html>
