@@ -2,109 +2,57 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
   <title>Luera Kozmetik</title>
+
+  <meta name="description"
+        content="Luera Kozmetik hizmetinizde. Online mağazamız çok yakında.">
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     html, body {
-      margin: 0;
-      padding: 0;
       width: 100%;
       height: 100%;
-      background: #ffffff;
-      overflow: hidden;
+      background: #f8f4ee;
     }
 
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    .page {
+    .hero {
       width: 100%;
-      height: 100%;
+      height: 100dvh;
+
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 10px;
     }
 
-    .main-image {
-      max-width: 94vw;
-      max-height: 68vh;
-      width: auto;
-      height: auto;
-      display: block;
+    .hero img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-    }
-
-    .countdown-area {
-      margin-top: 14px;
-      text-align: center;
-    }
-
-    .countdown-title {
-      color: #17345f;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .time-box {
-      min-width: 60px;
-      text-align: center;
-    }
-
-    .number {
+      object-position: center;
       display: block;
-      color: #17345f;
-      font-family: Georgia, serif;
-      font-size: 30px;
-      font-weight: bold;
-    }
-
-    .label {
-      display: block;
-      color: #b08a46;
-      font-size: 10px;
-      letter-spacing: 1px;
-      margin-top: 3px;
     }
 
     @media (max-width: 600px) {
-      .main-image {
-        max-height: 64vh;
-      }
-
-      .countdown {
-        gap: 8px;
-      }
-
-      .time-box {
-        min-width: 50px;
-      }
-
-      .number {
-        font-size: 24px;
-      }
-
-      .countdown-title {
-        font-size: 12px;
-        letter-spacing: 2px;
+      .hero img {
+        width: 100%;
+        height: 100dvh;
+        object-fit: contain;
       }
     }
   </style>
@@ -112,81 +60,11 @@
 
 <body>
 
-  <div class="page">
-
+  <main class="hero">
     <img
-      class="main-image"
       src="WhatsApp Image 2026-09-06 at 16.37.58.jpeg"
-      alt="Luera Kozmetik Açılış"
-    >
-
-    <div class="countdown-area">
-
-      <div class="countdown-title">
-        AÇILIŞA KALAN SÜRE
-      </div>
-
-      <div class="countdown">
-
-        <div class="time-box">
-          <span class="number" id="days">00</span>
-          <span class="label">GÜN</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="hours">00</span>
-          <span class="label">SAAT</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="minutes">00</span>
-          <span class="label">DAKİKA</span>
-        </div>
-
-        <div class="time-box">
-          <span class="number" id="seconds">00</span>
-          <span class="label">SANİYE</span>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    const openingDate = new Date("2026-09-12T15:00:00+03:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = openingDate - now;
-
-      if (distance <= 0) {
-        document.querySelector(".countdown-area").innerHTML =
-          '<div class="countdown-title">LUERA KOZMETİK AÇILDI</div>';
-        return;
-      }
-
-      const days = Math.floor(distance / 86400000);
-      const hours = Math.floor((distance % 86400000) / 3600000);
-      const minutes = Math.floor((distance % 3600000) / 60000);
-      const seconds = Math.floor((distance % 60000) / 1000);
-
-      document.getElementById("days").textContent =
-        String(days).padStart(2, "0");
-
-      document.getElementById("hours").textContent =
-        String(hours).padStart(2, "0");
-
-      document.getElementById("minutes").textContent =
-        String(minutes).padStart(2, "0");
-
-      document.getElementById("seconds").textContent =
-        String(seconds).padStart(2, "0");
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+      alt="Luera Kozmetik Hizmetinizde">
+  </main>
 
 </body>
 </html>
